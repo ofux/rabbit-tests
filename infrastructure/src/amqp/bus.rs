@@ -2,7 +2,7 @@ use lapin::{
 	message::Delivery,
 	options::{ExchangeDeclareOptions, QueueDeclareOptions},
 	publisher_confirm::Confirmation,
-	Channel, Connection, Consumer,
+	BasicProperties, Channel, Connection, Consumer,
 };
 use log::error;
 use thiserror::Error;
@@ -73,7 +73,7 @@ impl Bus {
 				routing_key,
 				Default::default(),
 				data,
-				Default::default(),
+				BasicProperties::default().with_delivery_mode(2),
 			)
 			.await?
 			.await?;
