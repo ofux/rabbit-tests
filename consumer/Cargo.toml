@@ -6,3 +6,28 @@ edition = "2021"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
+infrastructure = {path = "../infrastructure", package = "infrastructure"}
+
+# Utils
+dotenv = "0.15.0"
+
+# Log
+log = "0.4.17"
+
+# Async
+async-trait = "0.1.56"
+futures = {version = "0.3.21", features = ["alloc"]}
+tokio = {version = "1.18.2", features = ["full"]}
+tokio-stream = "0.1.10"
+
+# RabbitMQ
+lapin = "2.1.1"
+tokio-executor-trait = "2.1.0"
+
+# Errors
+anyhow = "1.0.57"
+thiserror = "1.0.31"
+
+# Serde
+serde = {version = "1.0.137", features = ["derive"]}
+serde_json = {version = "1.0.81"}
