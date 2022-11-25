@@ -52,6 +52,20 @@ impl Bus {
 		routing_key: &str,
 		data: &[u8],
 	) -> Result<Confirmation, Error> {
+		if exchange_name != "" {
+			self.channel
+				.exchange_declare(
+					exchange_name,
+					lapin::ExchangeKind::Fanout,
+					ExchangeDeclareOptions {
+						durable: true,
+						..Default::default()
+					},
+					Default::default(),
+				)
+				.await?;
+		}
+
 		let confirmation = self
 			.channel
 			.basic_publish(
